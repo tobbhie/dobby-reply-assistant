@@ -1,4 +1,4 @@
-# Twitter AI Reply Assistant
+# Dobby Reply Assistant
 
 A production-ready Chrome extension that provides AI-powered reply suggestions for Twitter/X using Fireworks AI. Features secure API key management, error recovery, and real-time validation.
 
@@ -141,7 +141,6 @@ You can extend the extension by:
 
 1. **"AI service unavailable"**
    - Make sure the API server is running on localhost:8000
-   - Check your MODEL_API_KEY in the .env file
 
 2. **Extension not working on Twitter**
    - Refresh the Twitter page
@@ -156,7 +155,7 @@ You can extend the extension by:
 
 1. Open Chrome Developer Tools (F12)
 2. Go to the Console tab
-3. Look for messages starting with "🤖 Twitter AI Assistant"
+3. Look for messages starting with "Dobby Reply Assistant"
 4. Check for any error messages
 
 ## 🔒 Privacy & Security
