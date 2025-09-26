@@ -1,0 +1,305 @@
+/* Twitter AI Reply Assistant - Additional Styles */
+
+/* Ensure our styles don't conflict with Twitter's styles */
+.ai-reply-btn {
+    all: unset;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 8px 12px !important;
+    border: none !important;
+    background: #1d9bf0 !important;
+    color: white !important;
+    border-radius: 20px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    margin-left: 8px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.ai-reply-btn:hover {
+    background: #1a8cd8 !important;
+    transform: translateY(-1px) !important;
+}
+
+.ai-reply-btn:active {
+    transform: translateY(0) !important;
+}
+
+.ai-reply-btn.loading {
+    background: #657786 !important;
+    cursor: not-allowed !important;
+}
+
+.ai-reply-btn.loading:hover {
+    transform: none !important;
+}
+
+/* Modal styles */
+.ai-reply-modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    z-index: 10000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+.ai-reply-modal {
+    background: white !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    max-width: 500px !important;
+    width: 90% !important;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.ai-reply-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 20px !important;
+}
+
+.ai-reply-header h3 {
+    margin: 0 !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    color: #14171a !important;
+}
+
+.close-btn {
+    background: none !important;
+    border: none !important;
+    font-size: 24px !important;
+    cursor: pointer !important;
+    color: #657786 !important;
+    padding: 4px !important;
+    border-radius: 4px !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.close-btn:hover {
+    background: #f7f9fa !important;
+}
+
+.ai-reply-content {
+    margin-bottom: 20px !important;
+}
+
+.original-tweet {
+    background: #f7f9fa !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+    margin-bottom: 16px !important;
+    border-left: 3px solid #1d9bf0 !important;
+}
+
+.original-tweet strong {
+    color: #14171a !important;
+    font-size: 14px !important;
+}
+
+.original-tweet p {
+    margin: 8px 0 !important;
+    color: #14171a !important;
+    line-height: 1.4 !important;
+}
+
+.original-tweet small {
+    color: #657786 !important;
+    font-size: 12px !important;
+}
+
+.ai-suggestion {
+    margin-bottom: 20px !important;
+}
+
+.ai-suggestion strong {
+    color: #14171a !important;
+    font-size: 14px !important;
+    display: block !important;
+    margin-bottom: 8px !important;
+}
+
+.ai-reply-text {
+    width: 100% !important;
+    min-height: 80px !important;
+    padding: 12px !important;
+    border: 1px solid #e1e8ed !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    resize: vertical !important;
+    font-family: inherit !important;
+    box-sizing: border-box !important;
+    transition: border-color 0.2s ease !important;
+}
+
+.ai-reply-text:focus {
+    outline: none !important;
+    border-color: #1d9bf0 !important;
+    box-shadow: 0 0 0 3px rgba(29, 155, 240, 0.1) !important;
+}
+
+.char-count {
+    text-align: right !important;
+    font-size: 12px !important;
+    color: #657786 !important;
+    margin-top: 4px !important;
+}
+
+.ai-reply-actions {
+    display: flex !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+}
+
+.ai-reply-actions button {
+    padding: 8px 16px !important;
+    border: none !important;
+    border-radius: 20px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    font-family: inherit !important;
+}
+
+.copy-btn {
+    background: #1d9bf0 !important;
+    color: white !important;
+}
+
+.copy-btn:hover {
+    background: #1a8cd8 !important;
+}
+
+.tweet-btn {
+    background: #1d9bf0 !important;
+    color: white !important;
+}
+
+.tweet-btn:hover {
+    background: #1a8cd8 !important;
+}
+
+.regenerate-btn {
+    background: #657786 !important;
+    color: white !important;
+}
+
+.regenerate-btn:hover {
+    background: #5a6b7a !important;
+}
+
+/* Toast notifications */
+.ai-toast {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    padding: 12px 20px !important;
+    border-radius: 8px !important;
+    color: white !important;
+    font-weight: 600 !important;
+    z-index: 10001 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+.ai-toast.success {
+    background: #00ba7c !important;
+}
+
+.ai-toast.error {
+    background: #e0245e !important;
+}
+
+/* Loading spinner */
+.spinner {
+    animation: spin 1s linear infinite !important;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg) !important; }
+    to { transform: rotate(360deg) !important; }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .ai-reply-modal {
+        width: 95% !important;
+        padding: 16px !important;
+    }
+    
+    .ai-reply-actions {
+        flex-direction: column !important;
+    }
+    
+    .ai-reply-actions button {
+        width: 100% !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .ai-reply-modal {
+        background: #15202b !important;
+        color: #ffffff !important;
+    }
+    
+    .ai-reply-header h3 {
+        color: #ffffff !important;
+    }
+    
+    .original-tweet {
+        background: #192734 !important;
+        color: #ffffff !important;
+    }
+    
+    .original-tweet strong {
+        color: #ffffff !important;
+    }
+    
+    .original-tweet p {
+        color: #ffffff !important;
+    }
+    
+    .ai-suggestion strong {
+        color: #ffffff !important;
+    }
+    
+    .ai-reply-text {
+        background: #192734 !important;
+        color: #ffffff !important;
+        border-color: #38444d !important;
+    }
+    
+    .ai-reply-text:focus {
+        border-color: #1d9bf0 !important;
+    }
+    
+    .char-count {
+        color: #8b98a5 !important;
+    }
+}
+
+/* API Key Validation Styles */
+.api-key-input input.valid {
+    border-color: #28a745 !important;
+    background-color: #f8fff9 !important;
+}
+
+.api-key-input input.invalid {
+    border-color: #dc3545 !important;
+    background-color: #fff8f8 !important;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "dobby-reply-assistant",
+  "version": "1.0.0",
+  "description": "AI-powered reply suggestions for Twitter/X with Fireworks AI integration",
+  "scripts": {
+    "start": "python minimal-model.py",
+    "install": "pip install -r requirements.txt",
+    "dev": "python minimal-model.py"
+  },
+  "keywords": ["chrome-extension", "twitter", "ai", "reply-assistant", "fireworks-ai", "production-ready"],
+  "author": "pipsandbills",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sentient-agi/Sentient-Social-Agent"
+  },
+  "engines": {
+    "python": ">=3.8"
+  }
+}
