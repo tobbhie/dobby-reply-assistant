@@ -25,22 +25,47 @@ twitter-ai-extension/
 ├── popup.js             # Popup functionality
 ├── styles.css           # Additional styling
 ├── dobby.png            # Extension icon
-├── minimal-model.py     # Minimal Flask API server
+├── minimal-model.py     # Flask API server
+├── server.py            # Production server for Render.com
 ├── requirements.txt     # Python dependencies
+├── render.yaml          # Render.com deployment config
+├── INSTALLATION.md      # Extension installation guide
+├── DEPLOYMENT.md        # Server deployment guide
 ├── package.json         # Project metadata
+├── .gitignore          # Git ignore rules
+├── LICENSE             # Apache 2.0 license
 └── README.md           # This file
 ```
 
-## 🛠️ Installation
+## 🚀 Quick Start
 
-### 1. Install Python Dependencies
+### **Option 1: Local Development**
 
-```bash
-cd twitter-ai-extension
-pip install -r requirements.txt
-```
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/tobbhie/dobby-reply-assistant.git
+   cd twitter-ai-extension
+   ```
 
-### 2. Get Your Fireworks API Key
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Start the API server**:
+   ```bash
+   python minimal-model.py
+   ```
+
+4. **Install Chrome extension** (see [INSTALLATION.md](INSTALLATION.md))
+
+### **Option 2: Cloud Deployment (Recommended)**
+
+1. **Deploy to Render.com** (see [DEPLOYMENT.md](DEPLOYMENT.md))
+2. **Install Chrome extension** (see [INSTALLATION.md](INSTALLATION.md))
+3. **Configure extension** with your Render URL
+
+## 🔑 Get Your Fireworks API Key
 
 1. Visit [app.fireworks.ai](https://app.fireworks.ai)
 2. Sign up or log in to your account
@@ -48,27 +73,9 @@ pip install -r requirements.txt
 4. Create a new API key
 5. Copy the key (starts with `fw_`)
 
-### 3. Start the API Server
-
-The server runs in production mode by default, requiring the extension to provide its own API key:
-
-```bash
-python minimal-model.py
-```
-
-The API server will run on `http://localhost:8000`
-
-### 4. Install Chrome Extension
-
-1. Open Chrome and go to `chrome://extensions/`
-2. Enable "Developer mode"
-3. Click "Load unpacked"
-4. Select the `twitter-ai-extension` folder
-5. The extension should now appear in your extensions
-
 ## 🎯 Usage
 
-### On Twitter/X:
+### **On Twitter/X:**
 
 1. **Navigate to any tweet** on Twitter/X
 2. **Look for the "AI Reply" button** (blue button with AI icon)
@@ -77,19 +84,19 @@ The API server will run on `http://localhost:8000`
 5. **Copy to clipboard** or **open Twitter reply** with the suggested text
 6. **Edit if needed** and post your reply
 
-### Extension Popup:
+### **Extension Configuration:**
 
 1. **Click the extension icon** in your browser toolbar
 2. **Enter your Fireworks API key** (required for AI functionality)
-3. **Configure settings**:
-   - API endpoint (default: http://localhost:8000)
+3. **API endpoint is automatically configured** ✅
+4. **Configure additional settings**:
    - Default prompt for replies
    - Maximum reply length
    - Auto-open reply box option
 4. **Test connection** to ensure API is working
 5. **Save settings** to apply changes
 
-**Important**: Your Fireworks API key is stored locally and never synced to the cloud for security.
+**🔒 Security**: Your Fireworks API key is stored locally and never synced to the cloud.
 
 ## ⚙️ Configuration
 
@@ -108,14 +115,23 @@ You can customize the AI's behavior by modifying the default prompt:
 Generate a helpful, engaging reply to this tweet. Keep it under 280 characters and make it sound natural and conversational.
 ```
 
+## 🌐 Deployment Options
+
+### **Local Development**
+- Run `python minimal-model.py` for local testing
+- Extension connects to `http://localhost:8000`
+
+### **Cloud Deployment (Recommended)**
+- **Render.com**: See [DEPLOYMENT.md](DEPLOYMENT.md) for step-by-step guide
+- **Other platforms**: Works with any WSGI-compatible hosting
+
 ## 🔧 API Endpoints
 
-The extension communicates with a local Flask API server:
+The extension communicates with the Flask API server:
 
-- `GET /health` - Health check
-- `POST /api/generate-reply` - Generate single reply
-- `POST /api/analyze-tweet` - Analyze tweet sentiment/topics  
-- `POST /api/suggest-replies` - Generate multiple reply suggestions
+- `GET /health` - Health check and status
+- `POST /api/generate-reply` - Generate AI reply suggestions
+- **CORS enabled** for Chrome extension compatibility
 
 ## 🎨 Customization
 
@@ -137,33 +153,42 @@ You can extend the extension by:
 
 ## 🐛 Troubleshooting
 
-### Common Issues:
+### **Common Issues:**
 
 1. **"AI service unavailable"**
-   - Make sure the API server is running on localhost:8000
+   - Check if API server is running (local or cloud)
+   - Verify API endpoint in extension settings
+   - Test connection using "Test Connection" button
 
 2. **Extension not working on Twitter**
    - Refresh the Twitter page
-   - Check if the extension is enabled
-   - Look for console errors in Developer Tools
+   - Check if extension is enabled in `chrome://extensions/`
+   - Look for console errors in Developer Tools (F12)
 
-3. **API connection failed**
-   - Verify the API endpoint in extension settings
-   - Test the connection using the "Test Connection" button
+3. **"Fireworks API key required"**
+   - Enter your API key in extension settings
+   - Verify key format (starts with `fw_`)
+   - Check key is not truncated
 
-### Debug Mode:
+4. **"Failed to connect to AI service"**
+   - For local: Ensure `python minimal-model.py` is running
+   - For cloud: Check your Render deployment is active
+   - Verify URL in extension settings
 
-1. Open Chrome Developer Tools (F12)
-2. Go to the Console tab
-3. Look for messages starting with "Dobby Reply Assistant"
-4. Check for any error messages
+### **Debug Steps:**
+
+1. **Check extension console** (F12 → Console)
+2. **Test API health**: Visit `http://localhost:8000/health` or your Render URL
+3. **Verify API key**: Check it's complete and valid
+4. **Check server logs**: Look at terminal output or Render logs
 
 ## 🔒 Privacy & Security
 
-- **Local Processing**: All AI processing happens on your local machine
-- **No Data Collection**: No user data is sent to external services
-- **API Key Security**: Your API keys stay on your local machine
+- **Secure API Key Storage**: Fireworks API keys stored locally, never synced
+- **No Data Collection**: No user data is sent to external services except Fireworks AI
 - **User Control**: You review all suggestions before posting
+- **CORS Protection**: Server configured for Chrome extension security
+- **Production Ready**: Comprehensive error handling and validation
 
 ## 🤝 Contributing
 
@@ -178,15 +203,21 @@ This extension is designed to be easily extensible:
 
 This project is part of the Sentient Social Agent and follows the same Apache 2.0 license.
 
+## 📚 Documentation
+
+- **[INSTALLATION.md](INSTALLATION.md)** - Chrome extension installation guide
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Server deployment to Render.com
+- **[GitHub Repository](https://github.com/tobbhie/dobby-reply-assistant)** - Source code and issues
+
 ## 🆘 Support
 
 If you encounter issues:
 
-1. Check the troubleshooting section above
-2. Review the console for error messages
-3. Ensure all dependencies are installed
-4. Verify your API configuration
+1. **Check the troubleshooting section** above
+2. **Review the documentation** (INSTALLATION.md, DEPLOYMENT.md)
+3. **Check GitHub issues** for similar problems
+4. **Create a new issue** if needed
 
 ---
 
-**Powered by [Sentient Social Agent](https://github.com/sentient-agi/Sentient-Social-Agent)**
+**🚀 Ready to deploy?** See [DEPLOYMENT.md](DEPLOYMENT.md) for Render.com setup!

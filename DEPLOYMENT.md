@@ -38,15 +38,24 @@ In the Render dashboard, go to **Environment** tab and add:
 2. **Wait for deployment** (usually 2-3 minutes)
 3. **Get your URL** (e.g., `https://twitter-ai-api.onrender.com`)
 
-## 📱 Update Extension Settings
+## 📱 Extension Configuration
 
-After deployment, update your Chrome extension:
+**✅ Automatic Configuration**: The extension automatically detects the correct API endpoint!
 
-1. **Open extension popup**
-2. **Change API endpoint** to your Render URL:
-   - Example: `https://twitter-ai-api.onrender.com`
-3. **Test connection**
+- **Development**: Uses `http://localhost:8000` when running locally
+- **Production**: Uses `https://twitter-ai-api.onrender.com` when deployed
+- **No manual configuration needed!**
+
+### **What you need to configure:**
+1. **Open Chrome extension popup** (click Dobby icon)
+2. **Enter your Fireworks API key** (starts with `fw_`)
+3. **Test connection** to verify it works
 4. **Save settings**
+
+### **Example Configuration:**
+- **API Endpoint**: Automatically set ✅
+- **Fireworks API Key**: `fw_your_api_key_here` (you provide this)
+- **Test Connection**: Should show "Connected" ✅
 
 ## 🚨 Important Notes
 

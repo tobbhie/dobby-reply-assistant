@@ -201,13 +201,17 @@ if __name__ == '__main__':
     
     print("🔒 Production mode: Extension must provide Fireworks API key")
     print("✅ Model initialized successfully")
-    print("🌐 API server starting on http://localhost:8000")
+    
+    # Get port from environment (required by Render)
+    port = int(os.environ.get('PORT', 8000))
+    
+    print(f"🌐 API server starting on port {port}")
     print("📖 API documentation available at http://localhost:8000")
     
     # Run the Flask app
     app.run(
         host='0.0.0.0',
-        port=8000,
-        debug=True,
+        port=port,
+        debug=False,  # Disable debug for production
         threaded=True
     )

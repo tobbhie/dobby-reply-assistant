@@ -3,10 +3,30 @@
 
 class TwitterAIBackground {
     constructor() {
-        this.defaultEndpoint = 'http://localhost:8000/api/generate-reply';
+        // Auto-detect API endpoint from environment or use defaults
+        this.defaultEndpoint = this.detectApiEndpoint();
         this.apiEndpoint = this.defaultEndpoint;
         this.loadSettings();
         this.setupMessageHandling();
+    }
+
+    detectApiEndpoint() {
+        // Use configuration from config.js if available
+        if (window.TWITTER_AI_CONFIG) {
+            return window.TWITTER_AI_CONFIG.getApiEndpoint();
+        }
+        
+        // Fallback detection
+        const isProduction = window.location.protocol === 'https:' || 
+                           window.location.hostname !== 'localhost';
+        
+        if (isProduction) {
+            // Default production endpoint
+            return 'https://twitter-ai-api.onrender.com/api/generate-reply';
+        }
+        
+        // Development default
+        return 'http://localhost:8000/api/generate-reply';
     }
 
     async loadSettings() {
