@@ -19,7 +19,7 @@ class TwitterAIPopup {
             if (response.success) {
                 const settings = response.settings;
                 document.getElementById('fireworksApiKey').value = settings.fireworksApiKey || '';
-                document.getElementById('apiEndpoint').value = settings.apiEndpoint;
+                // API endpoint is automatically configured
                 document.getElementById('defaultPrompt').value = settings.defaultPrompt;
                 document.getElementById('maxLength').value = settings.maxLength;
                 document.getElementById('autoOpenReply').checked = settings.autoOpenReply;
@@ -42,7 +42,7 @@ class TwitterAIPopup {
 
         const settings = {
             fireworksApiKey: fireworksApiKey,
-            apiEndpoint: document.getElementById('apiEndpoint').value,
+            // API endpoint is automatically configured
             defaultPrompt: document.getElementById('defaultPrompt').value,
             maxLength: parseInt(document.getElementById('maxLength').value),
             autoOpenReply: document.getElementById('autoOpenReply').checked
@@ -180,10 +180,7 @@ class TwitterAIPopup {
             this.testConnection();
         });
 
-        // Auto-save on input change
-        document.getElementById('apiEndpoint').addEventListener('input', () => {
-            this.debounce(() => this.saveSettings(), 1000);
-        });
+        // API endpoint is automatically configured - no event listener needed
 
         document.getElementById('defaultPrompt').addEventListener('input', () => {
             this.debounce(() => this.saveSettings(), 1000);

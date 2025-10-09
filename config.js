@@ -10,10 +10,12 @@ const CONFIG = {
             return 'https://dobby-reply-assistant.onrender.com/api/generate-reply';
         }
         
-        // Check if we're on a production domain
-        if (window.location.protocol === 'https:' && 
-            !window.location.hostname.includes('localhost')) {
-            return 'https://dobby-reply-assistant.onrender.com/api/generate-reply';
+        // Check if we're on a production domain (only if window is available)
+        if (typeof window !== 'undefined' && window.location) {
+            if (window.location.protocol === 'https:' && 
+                !window.location.hostname.includes('localhost')) {
+                return 'https://dobby-reply-assistant.onrender.com/api/generate-reply';
+            }
         }
         
         // Development fallback
@@ -22,8 +24,11 @@ const CONFIG = {
     
     // Environment Detection
     isProduction: () => {
-        return window.location.protocol === 'https:' || 
-               window.location.hostname !== 'localhost';
+        if (typeof window !== 'undefined' && window.location) {
+            return window.location.protocol === 'https:' || 
+                   window.location.hostname !== 'localhost';
+        }
+        return true; // Assume production in service worker context
     },
     
     // Get the appropriate API endpoint
@@ -32,5 +37,7 @@ const CONFIG = {
     }
 };
 
-// Make it globally available
-window.TWITTER_AI_CONFIG = CONFIG;
+// Make it globally available (only if window is available)
+if (typeof window !== 'undefined') {
+    window.TWITTER_AI_CONFIG = CONFIG;
+}

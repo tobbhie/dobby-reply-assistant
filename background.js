@@ -3,43 +3,36 @@
 
 class TwitterAIBackground {
     constructor() {
-        // Auto-detect API endpoint from environment or use defaults
-        this.defaultEndpoint = this.detectApiEndpoint();
-        this.apiEndpoint = this.defaultEndpoint;
-        this.loadSettings();
-        this.setupMessageHandling();
+        try {
+            // Auto-detect API endpoint from environment or use defaults
+            this.defaultEndpoint = this.detectApiEndpoint();
+            this.apiEndpoint = this.defaultEndpoint;
+            this.loadSettings();
+            this.setupMessageHandling();
+            console.log('✅ Dobby Reply Assistant background script initialized');
+        } catch (error) {
+            console.error('❌ Error initializing background script:', error);
+        }
     }
 
     detectApiEndpoint() {
-        // Use configuration from config.js if available
-        if (window.TWITTER_AI_CONFIG) {
-            return window.TWITTER_AI_CONFIG.getApiEndpoint();
-        }
-        
-        // Fallback detection
-        const isProduction = window.location.protocol === 'https:' || 
-                           window.location.hostname !== 'localhost';
-        
-        if (isProduction) {
-            // Default production endpoint
-            return 'https://dobby-reply-assistant.onrender.com/api/generate-reply';
-        }
-        
-        // Development default
-        return 'http://localhost:8000/api/generate-reply';
+        // Service workers don't have access to window object
+        // Use production endpoint by default for service worker
+        return 'https://dobby-reply-assistant.onrender.com/api/generate-reply';
     }
 
     async loadSettings() {
         try {
             const settings = await this.getSettings();
-            if (settings?.apiEndpoint) {
-                this.apiEndpoint = settings.apiEndpoint;
-            }
+            // Always use the production endpoint, don't override with stored settings
+            this.apiEndpoint = this.defaultEndpoint;
             // Store Fireworks API key for use in API calls
             this.fireworksApiKey = settings?.fireworksApiKey || '';
+            console.log('🔧 Using API endpoint:', this.apiEndpoint);
         } catch (e) {
             this.apiEndpoint = this.defaultEndpoint;
             this.fireworksApiKey = '';
+            console.log('🔧 Using default API endpoint:', this.apiEndpoint);
         }
     }
 
@@ -95,6 +88,7 @@ class TwitterAIBackground {
                 throw new Error('Fireworks API key is required. Please configure it in the extension settings.');
             }
             
+            console.log('🌐 Making API request to:', this.apiEndpoint);
             const response = await fetch(this.apiEndpoint, {
                 method: 'POST',
                 headers: {
@@ -175,7 +169,7 @@ class TwitterAIBackground {
     async getSettings() {
         return new Promise((resolve) => {
             chrome.storage.sync.get({
-                apiEndpoint: 'http://localhost:8000/api/generate-reply',
+                // API endpoint is automatically configured
                 defaultPrompt: 'Generate a helpful, engaging reply to this tweet. Keep it under 280 characters and make it sound natural and conversational.',
                 maxLength: 280,
                 autoOpenReply: false
@@ -212,4 +206,8 @@ class TwitterAIBackground {
 }
 
 // Initialize background script
-new TwitterAIBackground();
+try {
+    new TwitterAIBackground();
+} catch (error) {
+    console.error('❌ Failed to initialize background script:', error);
+}

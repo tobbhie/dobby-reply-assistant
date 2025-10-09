@@ -13,17 +13,19 @@ class TwitterAIAssistant {
 
     detectApiEndpoint() {
         // Use configuration from config.js if available
-        if (window.TWITTER_AI_CONFIG) {
+        if (typeof window !== 'undefined' && window.TWITTER_AI_CONFIG) {
             return window.TWITTER_AI_CONFIG.getApiEndpoint();
         }
         
         // Fallback detection
-        const isProduction = window.location.protocol === 'https:' || 
-                           window.location.hostname !== 'localhost';
-        
-        if (isProduction) {
-            // Default production endpoint
-            return 'https://dobby-reply-assistant.onrender.com/api/generate-reply';
+        if (typeof window !== 'undefined' && window.location) {
+            const isProduction = window.location.protocol === 'https:' || 
+                               window.location.hostname !== 'localhost';
+            
+            if (isProduction) {
+                // Default production endpoint
+                return 'https://dobby-reply-assistant.onrender.com/api/generate-reply';
+            }
         }
         
         // Development default
