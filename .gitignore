@@ -49,6 +49,10 @@ Thumbs.db
 *.crx
 *.pem
 
+# Deployment
+.env.production
+.env.staging
+
 # Temporary files
 *.tmp
 *.temp

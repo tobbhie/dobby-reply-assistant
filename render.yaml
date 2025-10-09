@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: twitter-ai-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python minimal-model.py
+    envVars:
+      - key: PRODUCTION_MODE
+        value: true
+    healthCheckPath: /health
