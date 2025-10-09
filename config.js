@@ -7,13 +7,13 @@ const CONFIG = {
         // Check if we're in a Chrome extension context
         if (typeof chrome !== 'undefined' && chrome.runtime) {
             // We're in a Chrome extension - use production endpoint
-            return 'https://twitter-ai-api.onrender.com/api/generate-reply';
+            return 'https://dobby-reply-assistant.onrender.com/api/generate-reply';
         }
         
         // Check if we're on a production domain
         if (window.location.protocol === 'https:' && 
             !window.location.hostname.includes('localhost')) {
-            return 'https://twitter-ai-api.onrender.com/api/generate-reply';
+            return 'https://dobby-reply-assistant.onrender.com/api/generate-reply';
         }
         
         // Development fallback

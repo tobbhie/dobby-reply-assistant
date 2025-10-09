@@ -88,7 +88,7 @@ twitter-ai-extension/
 
 1. **Click the extension icon** in your browser toolbar
 2. **Enter your Fireworks API key** (required for AI functionality)
-3. **API endpoint is automatically configured** ✅
+3. **API endpoint**: `https://dobby-reply-assistant.onrender.com` (automatically configured) ✅
 4. **Configure additional settings**:
    - Default prompt for replies
    - Maximum reply length

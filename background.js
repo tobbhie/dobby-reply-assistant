@@ -22,7 +22,7 @@ class TwitterAIBackground {
         
         if (isProduction) {
             // Default production endpoint
-            return 'https://twitter-ai-api.onrender.com/api/generate-reply';
+            return 'https://dobby-reply-assistant.onrender.com/api/generate-reply';
         }
         
         // Development default

@@ -43,7 +43,7 @@ In the Render dashboard, go to **Environment** tab and add:
 **✅ Automatic Configuration**: The extension automatically detects the correct API endpoint!
 
 - **Development**: Uses `http://localhost:8000` when running locally
-- **Production**: Uses `https://twitter-ai-api.onrender.com` when deployed
+- **Production**: Uses `https://dobby-reply-assistant.onrender.com` when deployed
 - **No manual configuration needed!**
 
 ### **What you need to configure:**
@@ -53,7 +53,7 @@ In the Render dashboard, go to **Environment** tab and add:
 4. **Save settings**
 
 ### **Example Configuration:**
-- **API Endpoint**: Automatically set ✅
+- **API Endpoint**: `https://dobby-reply-assistant.onrender.com` (automatically set) ✅
 - **Fireworks API Key**: `fw_your_api_key_here` (you provide this)
 - **Test Connection**: Should show "Connected" ✅
 
