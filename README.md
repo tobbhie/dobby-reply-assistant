@@ -98,6 +98,16 @@ twitter-ai-extension/
 
 **🔒 Security**: Your Fireworks API key is stored locally and never synced to the cloud.
 
+## 🔒 Privacy & Security
+
+- **No Data Collection**: We don't collect or store any personal information
+- **Local Storage Only**: All settings and API keys stored locally in your browser
+- **HTTPS Encryption**: All communications encrypted
+- **No Cloud Sync**: Your data never leaves your device
+- **Open Source**: Full transparency in how your data is handled
+
+[Read our full Privacy Policy](PRIVACY.md)
+
 ## ⚙️ Configuration
 
 ### API Settings
@@ -207,6 +217,7 @@ This project is part of the Sentient Social Agent and follows the same Apache 2.
 
 - **[INSTALLATION.md](INSTALLATION.md)** - Chrome extension installation guide
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Server deployment to Render.com
+- **[Privacy Policy](PRIVACY.md)** - Data collection and usage information
 - **[GitHub Repository](https://github.com/tobbhie/dobby-reply-assistant)** - Source code and issues
 
 ## 🆘 Support
